@@ -91,7 +91,7 @@ export default function BookingForm() {
 
       <div className="mt-6 flex items-center justify-end gap-x-6 border-b p-[10px]">
         <h2 className='text-base font-semibold leading-7 text-gray-900'>
-            Note: Please bring your national ID card to the hospital on the day of vaccination.
+            Note: Please don't forget to bring your national ID card to the hospital on the day of vaccination.
         </h2>
       </div>
     </form>
