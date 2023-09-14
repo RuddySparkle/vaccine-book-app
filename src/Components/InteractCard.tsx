@@ -24,7 +24,7 @@ export default function InteractCard({children, contentName}: { children: React.
 
     return (
         <div className='w-1/4 h-[300px] rounded-lg shadow-lg bg-white'
-            onClick={() => OnSelected()}
+            onClick={() => OnSelected()}         
             onMouseOver={(event) => OnHover(event)}
             onMouseOut={(event) => OnHover(event)}
         >

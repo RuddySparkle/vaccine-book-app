@@ -1,10 +1,16 @@
+'use client'
+import { useState } from 'react';
 import Image from 'next/image'
 
 export default function Banner() {
+
+    const covers=['/image/cover1.png','/image/cover2.png','/image/cover3.png','/image/cover4.png']
+    const [index, setIndex] = useState(0);
+
     return (
-        <div className='relative block m-0 p-[5px] w-screen h-96'>
-            <Image src="/image/background.png" alt="background" fill={true} objectFit='cover' priority/>
-            <div className='relative top-[35%] z-20 text-center'>
+        <div className='relative block m-0 p-[5px] w-screen h-96' onClick={()=>{setIndex(index+1)}} >
+            <Image src={covers[index%4]} alt="background" fill={true} objectFit='cover' priority/>
+            <div className='relative top-[23%] z-20 text-center'>
                 <h1 className='text-4xl font-bold'>Empowering Health through Vaccines</h1>
                 <h2 className='text-2xl font-serif'>Protecting Today for a Safer Tomorrow</h2>
             </div>
