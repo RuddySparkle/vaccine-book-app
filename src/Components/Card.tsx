@@ -21,7 +21,7 @@ export default function Card({ hospitalName, ratingMap, imgSrc, onCompare}:{ hos
                         onCompare(hospitalName, newValue);
                     }
                 }}
-                onClick={(e) => e.stopPropagation()}
+                onClick={(e) => {e.stopPropagation();}}
                 />                
             </Box> 
         </InteractCard>
