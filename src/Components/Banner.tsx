@@ -17,7 +17,7 @@ export default function Banner() {
                 <h2 className='text-2xl font-serif'>Protecting Today for a Safer Tomorrow</h2>
             </div>
             <button className='bg-white text-cyan-600 border border-cyan-600
-                font-semibold text-xl py-5 px-5 m-10 rounded-lg z-30 absolute bottom-0 right-0
+                font-semibold text-xl py-5 px-5 m-10 rounded-lg z-20 absolute bottom-0 right-0
                 hover:bg-cyan-600 hover:text-white hover:border-transparent'
                 onClick={(e)=>{e.stopPropagation(); router.push('/hospital')}}>
                 Select the hospital NOW!
