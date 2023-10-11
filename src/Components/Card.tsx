@@ -3,7 +3,8 @@ import InteractCard from './InteractCard';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 
-export default function Card({ hospitalName, ratingMap, imgSrc, onCompare}:{ hospitalName: string, ratingMap: Map<string,number>, imgSrc:string, onCompare:Function}) {
+export default function Card({ hospitalName, ratingMap, imgSrc, onCompare}:{ hospitalName: string, ratingMap
+    : Map<string,number>, imgSrc:string, onCompare?:Function}) {
 
     return (
         <InteractCard contentName={hospitalName} >
@@ -14,16 +15,19 @@ export default function Card({ hospitalName, ratingMap, imgSrc, onCompare}:{ hos
                 <div>{hospitalName}</div>
                 
             </div>
-            <Box className='block h-[10%] px-[15px]'>
-                <Rating name="simple-controlled" value={ratingMap.get(hospitalName) || 0}
-                onChange={(e,newValue) => {
-                    if (newValue) {        
-                        onCompare(hospitalName, newValue);
-                    }
-                }}
-                onClick={(e) => {e.stopPropagation();}}
-                />                
-            </Box> 
+            {
+                onCompare &&
+                <Box className='block h-[10%] px-[15px]'>
+                    <Rating name="simple-controlled" value={ratingMap.get(hospitalName) || 0}
+                    onChange={(e,newValue) => {
+                        if (newValue) {        
+                            onCompare(hospitalName, newValue);
+                        }
+                    }}
+                    onClick={(e) => {e.stopPropagation();}}
+                    />                
+                </Box>
+            }
         </InteractCard>
     );
 }

@@ -1,10 +1,20 @@
 'use client'
-import { useState, useReducer } from 'react'
+import { useReducer, useRef, useEffect, useState } from 'react'
 import Card from './Card'
 import React from 'react'
 import Link from 'next/link'
+import getHospitals from '@/libs/getHospitals'
 
 export default function CardPanel() {
+
+    const [hospitalResponse, setHospitalResponse] = React.useState(null)
+    useEffect(() => {
+        const fetchData = async () => {
+            const hospitals = await getHospitals()
+            setHospitalResponse(hospitals)
+        }
+        fetchData()
+    }, [])
 
     const compareReducer = ( compareMap : Map<string, number>, action:{type: string, hospitalName: string, hospitalRating: number}) => {
         switch (action.type) {
@@ -24,11 +34,13 @@ export default function CardPanel() {
     const startMap = new Map<string, number>().set('Chulalongkorn Hospital', 4).set('Rajavithi Hospital', 4).set('Thammasat University Hospital', 4)
     const [compareMap, dispatch] = useReducer(compareReducer, startMap)
 
-    const mockHopitalRepo = [
-        {hid: '001', name: 'Chulalongkorn Hospital', rating: 4, imgSrc: '/image/chula.jpg'},
-        {hid: '002', name: 'Rajavithi Hospital', rating: 4, imgSrc: '/image/rajavithi.jpg'},
-        {hid: '003', name: 'Thammasat University Hospital', rating: 4, imgSrc: '/image/thammasat.jpg'}
-    ]
+    // const mockHopitalRepo = [
+    //     {hid: '001', name: 'Chulalongkorn Hospital', rating: 4, imgSrc: '/image/chula.jpg'},
+    //     {hid: '002', name: 'Rajavithi Hospital', rating: 4, imgSrc: '/image/rajavithi.jpg'},
+    //     {hid: '003', name: 'Thammasat University Hospital', rating: 4, imgSrc: '/image/thammasat.jpg'}
+    // ]
+
+    if(!hospitalResponse) return (<p> Hospital Panel is Loading ... </p>)
 
     function OnHover(event: React.SyntheticEvent) {
         if(event.type == 'mouseover'){
@@ -49,9 +61,9 @@ export default function CardPanel() {
         <div>
             <div className='m-[30px] flex flex-row content-around justify-around flex-wrap'>
                 {
-                    mockHopitalRepo.map((hospital) => (
-                        <Link href={`/hospital/${hospital.hid}`} className='w-1/4'>
-                        <Card hospitalName={hospital.name} ratingMap={compareMap} imgSrc={hospital.imgSrc} 
+                    hospitalResponse.data.map((hospital: Object) => (
+                        <Link href={`/hospital/${hospital.id}`} className='w-1/4'>
+                        <Card hospitalName={hospital.name} ratingMap={compareMap} imgSrc={hospital.picture} 
                         onCompare={(hospital: string, rating: number) => 
                         dispatch({type: 'add', hospitalName: hospital, hospitalRating: rating})}/>
                         </Link>
