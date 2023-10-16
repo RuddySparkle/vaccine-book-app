@@ -11,10 +11,10 @@ export default function BookingForm() {
   const [hospital, setHospital] = useState("CU")
 
   return (
-    <form className="p-12">
-      <div className="space-y-12 border-b border-gray-900/10 pb-6">
+    <form className="p-[20px]">
+      <div className="space-y-8 border-b border-gray-900/10 pb-6">
           <h2 className="text-2xl font-semibold leading-7 text-gray-900">Vaccine Booking Form</h2>
-          <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+          <div className="grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-6">
             <div className="sm:col-span-3">
               <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">
                 First name
