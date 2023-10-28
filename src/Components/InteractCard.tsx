@@ -3,10 +3,6 @@ import React from 'react';
 
 export default function InteractCard({children, contentName}: { children: React.ReactNode, contentName: string }) {
 
-    function OnSelected() {
-        alert('You selected ' + contentName);
-    }
-
     function OnHover(event: React.SyntheticEvent) {
         if(event.type == 'mouseover'){
             event.currentTarget.classList.remove('shadow-lg');

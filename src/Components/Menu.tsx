@@ -22,6 +22,7 @@ export default async function Menu() {
                     <MenuItem title='Sign-In' pageRef='/api/auth/signin'/>
                 </div>
             }
+            <MenuItem title="My Booking" pageRef="/mybooking"/>
             </div>
 
             <div className='grow flex flex-row justify-end gap-10 mr-5 h-[100%] place-items-center'>
