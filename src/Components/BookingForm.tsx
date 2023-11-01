@@ -46,6 +46,7 @@ export default function BookingForm() {
             </label>
             <div className="mt-2">
               <input 
+                required
                 type="text" 
                 name='first-name' 
                 id='first-name'
@@ -64,6 +65,7 @@ export default function BookingForm() {
             </label>
             <div className="mt-2">
               <input 
+                required
                 type="text" 
                 name='last-name' 
                 id="last-name"
@@ -82,6 +84,7 @@ export default function BookingForm() {
             </label>
             <div className="mt-2">
               <input
+                required
                 type="text"
                 name="national-id"
                 id="national-id"
