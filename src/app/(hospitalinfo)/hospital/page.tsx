@@ -9,38 +9,27 @@ import AddHospitalForm from "@/Components/AddHospitalForm";
 
 export default async function Hospital() {
 
-    const session = await getServerSession( authOptions )
-    if(!session || !session.user.token){
-        return null
-    }
-
-    const profile = await getUserProfile(session.user.token)
-
     const hospitals = getHospitals()
+    const session = await getServerSession( authOptions )
+    const profile = session? await getUserProfile(session.user.token) : null
 
     return (
         <main className="p-5 bg-[#d5e3f0] min-h-screen">
+
             <div className="text-center">
                 <h1 className="text-xl font-medium">Select Your Hospital</h1>
                 <Suspense fallback={<p> Loading ... <LinearProgress/></p>}>
                     <HospitalCatalog hospitalJson={hospitals}/>
                 </Suspense>
-      
             </div>
 
             <hr className="my-8 border-[px] border-[#000000]"/>
-
-            {/* <div> Test CardPanel Loading ... </div>
-            <CardPanel/> */}
-
             {
-                (profile.data.role == 'admin') ?
+                (profile?.data.role == 'admin') ?
                 <AddHospitalForm/>
                 : 
                 null
             }
-
-            <hr className="my-8 border-[px] border-[#000000]"/>
 
         </main>
     );
